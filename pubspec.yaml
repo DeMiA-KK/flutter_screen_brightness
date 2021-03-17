@@ -1,0 +1,26 @@
+name: screen_brightness
+description: A flutter plugin to get and set screen brightness.
+version: 0.1.0
+author:
+homepage: https://github.com/DeMiA-KK/screen_brightness
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.20.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: jp.co.demia.screen_brightness
+        pluginClass: ScreenBrightnessPlugin
+      ios:
+        pluginClass: ScreenBrightnessPlugin
