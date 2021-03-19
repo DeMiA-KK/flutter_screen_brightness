@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     getScreenBrightness().then((value) {
       setState(() {
-        _brightness = value;
+        _brightness = value ?? 0;
       });
     });
   }
