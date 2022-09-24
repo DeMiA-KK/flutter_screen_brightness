@@ -1,19 +1,8 @@
-import 'dart:async';
+import 'screen_brightness_platform_interface.dart';
 
-import 'package:flutter/services.dart';
+ScreenBrightnessPlatform get _platform => ScreenBrightnessPlatform.instance;
 
-class ScreenBrightness {
-  static const _channel = MethodChannel('screen_brightness');
-
-  static Future<double?> get brightness =>
-      _channel.invokeMethod('getBrightness');
-
-  static Future<void> setBrightness(double brightness) async {
-    return _channel.invokeMethod('setBrightness', {'brightness': brightness});
-  }
-}
-
-Future<double?> getScreenBrightness() => ScreenBrightness.brightness;
+Future<double?> getScreenBrightness() => _platform.getBrightness();
 
 Future<void> setScreenBrightness(double brightness) =>
-    ScreenBrightness.setBrightness(brightness);
+    _platform.setBrightness(brightness);
