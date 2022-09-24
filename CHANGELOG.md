@@ -1,3 +1,7 @@
+## 0.3.0
+
+* Recreate plugin.
+
 ## 0.2.0
 
 * Migrate to null safety.
