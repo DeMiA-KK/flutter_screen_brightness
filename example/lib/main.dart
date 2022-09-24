@@ -2,15 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:screen_brightness/screen_brightness.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
+        ),
+        body: const Center(
+          child: ScreenBrightnessSlider(),
+        ),
+      ),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class ScreenBrightnessSlider extends StatefulWidget {
+  const ScreenBrightnessSlider({super.key});
+
+  @override
+  State<ScreenBrightnessSlider> createState() => _ScreenBrightnessSliderState();
+}
+
+class _ScreenBrightnessSliderState extends State<ScreenBrightnessSlider> {
   double _brightness = 0;
 
   @override
@@ -25,23 +45,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text('current brightness: $_brightness'),
+        Slider(
+          value: _brightness,
+          onChanged: (value) async {
+            await setScreenBrightness(_brightness);
+            setState(() {
+              _brightness = value;
+            });
+          },
         ),
-        body: Center(
-          child: Slider(
-            value: _brightness,
-            onChanged: (value) {
-              setState(() {
-                _brightness = value;
-                setScreenBrightness(_brightness);
-              });
-            },
-          ),
-        ),
-      ),
+      ],
     );
   }
 }
